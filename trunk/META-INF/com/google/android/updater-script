@@ -1,9 +1,9 @@
 ui_print(" ");
 ui_print("*********************************************");
 ui_print("                                             ");
-ui_print("     Stock 3.15.651.16 Jelly Bean Deodex     ");
+ui_print("                 superJELLY                  ");
 ui_print("                                             ");
-ui_print("                by -viperboy-                ");
+ui_print("                by team d3rp                 ");
 ui_print("                                             ");
 ui_print("*********************************************");
 ui_print(" ");
@@ -21,6 +21,8 @@ show_progress(0.1, 0);
 format("ext4", "EMMC", "/dev/block/mmcblk0p35");
 mount("ext4", "EMMC", "/dev/block/mmcblk0p35", "/system");
 package_extract_dir("system", "/system");
+package_extract_dir("data", "/data");
+
 symlink("Roboto-Bold.ttf", "/system/fonts/DroidSans-Bold.ttf");
 symlink("Roboto-Regular.ttf", "/system/fonts/DroidSans.ttf");
 symlink("dumpstate", "/system/bin/dumpcrash");
@@ -101,7 +103,11 @@ set_perm(0, 2000, 0755, "/system/vendor/firmware");
 set_perm(0, 2000, 0755, "/system/vendor/lib");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
 set_perm(0, 0, 06755, "/system/xbin/su");
-set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d");
+set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d/*");
+
+set_perm(2000, 2000, 0771, "/data/local");
+set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
+
 symlink("/system/xbin/su", "/system/bin/su");
 set_perm(0, 1000, 0755, "/system/xbin/busybox");
 symlink("/system/xbin/busybox", "/system/bin/busybox");
@@ -124,5 +130,26 @@ ui_print("ERROR: Kernel Not Installed!")
 
 show_progress(0.2, 10);
 unmount("/system");
-ui_print("Done!");
-ui_print(" ");
+unmount("/data");
+
+ui_print("");
+ui_print("");
+ui_print("");
+
+ui_print("We hope you like magic...");
+ui_print(".");
+ui_print(".");
+ui_print(".");
+ui_print("o/");
+ui_print(".");
+ui_print(".");
+ui_print(".");
+ui_print("*\o");
+ui_print(".");
+ui_print(".");
+ui_print(".");
+ui_print("O_o");
+ui_print(".");
+ui_print(".");
+ui_print(".");
+ui_print("@Your JELLY is now ..... Super!");
