@@ -27,31 +27,7 @@
       <function name="IME_language_set">
         <set name="single">
           <item type="boolean" name="English">yes</item>
-          <item type="boolean" name="German">yes</item>
-          <item type="boolean" name="France">yes</item>
-          <item type="boolean" name="Italian">yes</item>
           <item type="boolean" name="Spanish">yes</item>
-          <item type="boolean" name="Russian">yes</item>
-          <item type="boolean" name="Czech">yes</item>
-          <item type="boolean" name="Danish">yes</item>
-          <item type="boolean" name="Swedish">yes</item>
-          <item type="boolean" name="Norwegian">yes</item>
-          <item type="boolean" name="Dutch">yes</item>
-          <item type="boolean" name="Polish">yes</item>
-          <item type="boolean" name="Portugal">yes</item>
-          <item type="boolean" name="Greek">yes</item>
-          <item type="boolean" name="Turkish">yes</item>
-          <item type="boolean" name="Finnish">yes</item>
-          <item type="boolean" name="Hungarian">yes</item>
-          <item type="boolean" name="Romanian">yes</item>
-          <item type="boolean" name="Slovak">yes</item>
-          <item type="boolean" name="Croatian">yes</item>
-          <item type="boolean" name="Slovenian">yes</item>
-          <item type="boolean" name="Serbian">yes</item>
-          <item type="boolean" name="Bulgarian">yes</item>
-          <item type="boolean" name="Estonian">yes</item>
-          <item type="boolean" name="Latvian">yes</item>
-          <item type="boolean" name="Lithuanian">yes</item>
         </set>
       </function>
       <function name="IME_sip_set">
