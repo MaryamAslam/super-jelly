@@ -75,7 +75,7 @@ ro.build.changelist=124461
 ro.build.fingerprint=htc/jewel/jewel:4.1.1/JRO03C/124461.16:user/release-keys
 ro.build.characteristics=default
 ro.build.project=JEWEL_CL_JB_45_S:299302
-ro.product.version=3.15.651.16 710RD
+ro.product.version=SuperJELLY_beta_0.1
 ro.build.languageremove=0
 ro.build.sense.version=4.5
 # Do not try to parse ro.build.description or .fingerprint
@@ -265,3 +265,75 @@ htc.audio.alc.enable=1
 ro.service.dpsvr.enabled=true
 net.bt.name=Android
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
+
+# For the default value of agps
+ro.ril.def.agps.mode = 6
+ro.ril.def.agps.feature = 1
+
+#more
+persist.service.adb.enable=1
+ro.secure=0
+ro.debuggable=1
+
+#unlock Sprint hotspot
+ro.tether.denied=false
+ro.wifi.hotspotUI=1
+ro.usb.tetheringUI=1
+ro.bt.tetheringUI=1
+
+#Hide ADB debugging icon
+persist.adb.notify=0
+
+#add ons
+ro.media.enc.jpeg.quality=100 
+ro.media.enc.hprof.vid.fps=65
+windowsmgr.max_events_per_sec=275
+pm.sleep_mode=1
+ro.config.htc.nocheckin=1
+ro.config.nocheckin=1
+ro.htc.checkin.delay=0
+ro.config.htc.noappupdate = 1
+profiler.force_disable_err_rpt=1
+profiler.force_disable_ulog=1
+
+# 3G SIGNAL STUFF
+ro.ril.hsxpa=3
+ro.ril.gprsclass=32
+ro.ril.hep=1
+ro.ril.enable.dtm=1
+ro.ril.hsdpa.category=28
+ro.ril.enable.a53=1
+ro.ril.enable.3g.prefix=1
+ro.ril.htcmaskw1.bitmask=4294967295
+ro.ril.htcmaskw1=268449905
+ro.ril.hsupa.category=9
+ro.ril.enable.sdr=1
+ro.ril.enable.gea3=1
+ro.ril.enable.fd.plmn.prefix=23402,23410,23411
+ro.ril.enable.a52=0
+ro.ril.fast.dormancy.rule=2
+
+# NET SPEED STUFF
+net.tcp.buffersize.default=4096,87380,256960,4096,16384,256960
+net.tcp.buffersize.wifi=4096,87380,256960,4096,16384,256960
+net.tcp.buffersize.umts=4096,87380,256960,4096,16384,256960
+net.tcp.buffersize.gprs=4096,87380,256960,4096,16384,256960
+net.tcp.buffersize.edge=4096,87380,256960,4096,16384,256960
+
+# UI tweaks
+ro.min_pointer_dur=8
+ro.max.fling_velocity=12000
+ro.min.fling_velocity=8000
+debug.performance.tuning=1
+video.accelerate.hw=1
+ro.FOREGROUND_APP_ADJ=0
+ro.VISIBLE_APP_ADJ=4
+ro.PERCEPTIBLE_APP_ADJ=2
+ro.HEAVY_WEIGHT_APP_ADJ=5
+ro.SECONDARY_SERVER_ADJ=6
+ro.BACKUP_APP_ADJ=7
+ro.HIDDEN_APP_MIN_ADJ=8
+ro.EMPTY_APP_ADJ=15
+ro.HOME_APP_ADJ=1
+ro.HOME_APP_MEM=4096
+
