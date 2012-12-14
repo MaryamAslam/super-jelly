@@ -8,12 +8,6 @@ ui_print("                                             ");
 ui_print("*********************************************");
 ui_print(" ");
 
-ui_print("Deleting cache and dalvik-cache...");	   	   
-ui_print(" ");
-format("ext4", "EMMC", "/dev/block/mmcblk0p36");
-mount("ext4", "EMMC", "/dev/block/mmcblk0p37", "/data");
-delete_recursive("/data/dalvik-cache");
-unmount("/data");
 
 ui_print("Extracting files...");	   	   
 ui_print(" ");
@@ -21,6 +15,7 @@ show_progress(0.1, 0);
 format("ext4", "EMMC", "/dev/block/mmcblk0p35");
 mount("ext4", "EMMC", "/dev/block/mmcblk0p35", "/system");
 package_extract_dir("system", "/system");
+mount("ext4", "EMMC", "/dev/block/mmcblk0p37", "/data");
 package_extract_dir("data", "/data");
 
 symlink("Roboto-Bold.ttf", "/system/fonts/DroidSans-Bold.ttf");
