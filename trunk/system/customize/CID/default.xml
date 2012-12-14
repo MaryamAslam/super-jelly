@@ -124,7 +124,7 @@
     </module>
   </category>
   <BootConfiguration>
-    <BootAnimation animation="/data/local/hTc_bootanim.zip" />
+    <BootAnimation animation="/data/local/hTC_bootanim.zip" />
   </BootConfiguration>
   <category name="SettingsProvider">
     <module name="res">
@@ -138,7 +138,7 @@
     </module>
   </category>
   <ShutdownConfiguration>
-    <ShutdownAnimation image_png="/data/local/hTc_downanim.zip" image="" fps="20" />
+    <ShutdownAnimation image_png="/data/local/hTC_downanim.zip" image="" fps="20" />
   </ShutdownConfiguration>
   <category name="Settings">
     <module name="properties">
