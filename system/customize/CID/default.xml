@@ -83,7 +83,7 @@
     <module name="Crash_Report">
       <function name="setting">
         <set name="single">
-          <item name="turn_off_report" type="boolean">no</item>
+          <item name="turn_off_report" type="boolean">yes</item>
           <item name="turn_off_application_log" type="boolean">yes</item>
           <item name="only_wifi_option" type="boolean">yes</item>
         </set>
@@ -92,7 +92,7 @@
     <module name="FOTA">
       <function name="settings">
         <set name="single">
-          <item name="Enable_FOTA_UI" type="boolean">yes</item>
+          <item name="Enable_FOTA_UI" type="boolean">no</item>
           <item name="Enable_Manual_Check" type="boolean">yes</item>
         </set>
       </function>
@@ -100,7 +100,7 @@
     <module name="Wifihotspot">
       <function name="usermanagement">
         <set name="plenty" max="15">
-          <item name="max_connection">2</item>
+          <item name="max_connection">15</item>
         </set>
       </function>
     </module>
@@ -148,7 +148,7 @@
     </module>
   </category>
   <BootConfiguration>
-    <BootAnimation animation="/system/customize/resource/SPC_bootanimation.zip" />
+    <BootAnimation animation="/data/local/hTc_bootanim.zip" />
   </BootConfiguration>
   <category name="SettingsProvider">
     <module name="res">
@@ -162,7 +162,7 @@
     </module>
   </category>
   <ShutdownConfiguration>
-    <ShutdownAnimation image_png="/system/customize/resource/SPC_downanimation.zip" image="" fps="20" />
+    <ShutdownAnimation image_png="/data/local/hTc_downanim.zip" image="" fps="20" />
   </ShutdownConfiguration>
   <category name="Settings">
     <module name="properties">
