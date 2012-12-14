@@ -28,79 +28,11 @@
 
 target=`getprop ro.board.platform`
 case "$target" in
-    "msm7201a_ffa" | "msm7201a_surf" | "msm7627_ffa" | "msm7627_surf" | "msm7627a" | \
-    "qsd8250_surf" | "qsd8250_ffa" | "msm7630_surf" | "msm7630_1x" | "msm7630_fusion" | "qsd8650a_st1x")
-        echo "ondemand" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-        echo 90 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
-        ;;
-esac
-
-case "$target" in
-    "msm7627a")
-        echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
-        ;;
-esac
-
-case "$target" in
-    "msm7201a_ffa" | "msm7201a_surf")
-        echo 500000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-        ;;
-esac
-
-case "$target" in
-    "msm7630_surf" | "msm7630_1x" | "msm7630_fusion")
-        echo 75000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-        echo 1 > /sys/module/pm2/parameters/idle_sleep_mode
-        ;;
-esac
-
-case "$target" in
-     "msm7201a_ffa" | "msm7201a_surf" | "msm7627_ffa" | "msm7627_surf" | "msm7630_surf" | "msm7630_1x" | "msm7630_fusion" | "msm7627a" )
-        echo 245760 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-        ;;
-esac
-
-case "$target" in
-    "msm8660" | "msm8660_csfb")
-	 echo 1 > /sys/module/rpm_resources/enable_low_power/L2_cache
-	 echo 1 > /sys/module/rpm_resources/enable_low_power/pxo
-	 echo 2 > /sys/module/rpm_resources/enable_low_power/vdd_dig
-	 echo 2 > /sys/module/rpm_resources/enable_low_power/vdd_mem
-	 echo 1 > /sys/module/rpm_resources/enable_low_power/rpm_cpu
-	 echo 1 > /sys/module/pm_8x60/modes/cpu0/power_collapse/suspend_enabled
-	 echo 1 > /sys/module/pm_8x60/modes/cpu1/power_collapse/suspend_enabled
-	 echo 1 > /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/suspend_enabled
-	 echo 1 > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/suspend_enabled
-	 echo 1 > /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled
-	 echo 1 > /sys/module/pm_8x60/modes/cpu1/power_collapse/idle_enabled
-	 echo 1 > /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/idle_enabled
-	 echo 1 > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/idle_enabled
-	 echo "ondemand" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-	 echo "ondemand" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
-	 echo 50000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-	 echo 90 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
-	 echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
-	 echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
-	 echo 384000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-	 echo 384000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
-	 chown system /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
-	 chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-	 chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-	 chown system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-	 chown system /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
-	 chown root.system /sys/devices/system/cpu/mfreq
-	 chmod 220 /sys/devices/system/cpu/mfreq
-	 chown root.system /sys/devices/system/cpu/cpu1/online
-	 chmod 664 /sys/devices/system/cpu/cpu1/online
-        ;;
-esac
-
-case "$target" in
     "msm8960")
      echo "ondemand" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
      echo "ondemand" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
-     echo 90 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
-     echo 50000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+     echo 85 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+     echo 25000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
      echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
      echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
      echo 10 > /sys/devices/system/cpu/cpufreq/ondemand/down_differential
@@ -129,24 +61,6 @@ case "$target" in
         ;;
 esac
 
-case "$target" in
-    "msm7627_ffa" | "msm7627_surf" | "msm7627a")
-        echo 25000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-        ;;
-esac
-
-case "$target" in
-    "qsd8250_surf" | "qsd8250_ffa" | "qsd8650a_st1x")
-        echo 50000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-        ;;
-esac
-
-case "$target" in
-    "qsd8650a_st1x")
-        mount -t debugfs none /sys/kernel/debug
-    ;;
-esac
-
 chown system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
 
 emmc_boot=`getprop ro.emmc`
@@ -166,4 +80,46 @@ case "$target" in
         start adaptive
     ;;
 esac
+
+#capleds
+echo 2 > /sys/class/leds/button-backlight/currents
+
+#zipalign
+LOG_FILE=/data/zipalign.log
+ZIPALIGNDB=/data/zipalign.db
+
+if [ -e $LOG_FILE ]; then
+	rm $LOG_FILE;
+fi;
+
+if [ ! -f $ZIPALIGNDB ]; then
+	touch $ZIPALIGNDB;
+fi;
+
+echo "Starting Automatic ZipAlign $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $LOG_FILE
+
+for DIR in /system/app /data/app ; do
+  cd $DIR
+  for APK in *.apk ; do
+    if [ $APK -ot $ZIPALIGNDB ] && [ $(grep "$DIR/$APK" $ZIPALIGNDB|wc -l) -gt 0 ] ; then
+      echo "Already checked: $DIR/$APK" | tee -a $LOG_FILE
+    else
+      zipalign -c 4 $APK
+      if [ $? -eq 0 ] ; then
+        echo "Already aligned: $DIR/$APK" | tee -a $LOG_FILE
+        grep "$DIR/$APK" $ZIPALIGNDB > /dev/null || echo $DIR/$APK >> $ZIPALIGNDB
+      else
+        echo "Now aligning: $DIR/$APK" | tee -a $LOG_FILE
+        zipalign -f 4 $APK /cache/$APK
+        busybox mount -o rw,remount /system
+        cp -f -p /cache/$APK $APK
+        busybox rm -f /cache/$APK
+        grep "$DIR/$APK" $ZIPALIGNDB > /dev/null || echo $DIR/$APK >> $ZIPALIGNDB
+      fi
+    fi
+  done
+done
+
+touch $ZIPALIGNDB
+echo "Automatic ZipAlign finished at $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $LOG_FILE
 
