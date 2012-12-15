@@ -1,7 +1,7 @@
 ui_print(" ");
 ui_print("*********************************************");
 ui_print("                                             ");
-ui_print("                 superJELLY                  ");
+ui_print("                 SuperJELLY                  ");
 ui_print("                                             ");
 ui_print("                by team d3rp                 ");
 ui_print("                                             ");
@@ -147,4 +147,4 @@ ui_print("O_o");
 ui_print(".");
 ui_print(".");
 ui_print(".");
-ui_print("@Your JELLY is now ..... Super!");
+ui_print("Your JELLY is now ..... Super!");
