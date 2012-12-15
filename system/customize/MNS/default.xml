@@ -398,10 +398,10 @@
           <item name="MMS_Auto_Retrieve">true</item>
           <item name="MMS_Roaming_Auto_Retrieve">true</item>
           <item name="MMS_Priority">Normal</item>
-          <item name="MMS_Msg_Size1">500K</item>
-          <item name="MMS_Msg_Size2">1M</item>
-          <item name="MMS_Msg_Size3">2M</item>
-          <item name="MMS_Msg_Size_Choose">1M</item>
+          <item name="MMS_Msg_Size1">750K</item>
+          <item name="MMS_Msg_Size2">2M</item>
+          <item name="MMS_Msg_Size3">5M</item>
+          <item name="MMS_Msg_Size_Choose">2M</item>
           <item name="MMS_Received_Notify">true</item>
           <item name="MMS_Play_Received_Notify">true</item>
           <item name="MMS_Received_Viberation">true</item>
@@ -710,9 +710,9 @@
         <set name="plenty" max="10">
           <item name="provider">Verizon</item>
           <item name="domain">verizon.net</item>
-          <item name="inserver">htc.imap.mail.yahoo.com</item>
+          <item name="inserver">incoming.verizon.net</item>
           <item name="inport">993</item>
-          <item name="outserver">htc.smtp.mail.yahoo.com</item>
+          <item name="outserver">outgoing.verizon.net</item>
           <item name="outport">465</item>
           <item name="inprotocol">IMAP</item>
           <item name="useSSLin">1</item>
