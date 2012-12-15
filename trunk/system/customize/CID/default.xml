@@ -69,7 +69,7 @@
       <function name="settings">
         <set name="single">
           <item name="Enable_FOTA_UI" type="boolean">no</item>
-          <item name="Enable_Manual_Check" type="boolean">yes</item>
+          <item name="Enable_Manual_Check" type="boolean">no</item>
         </set>
       </function>
     </module>
@@ -133,6 +133,8 @@
           <item name="def_nfc_on">true</item>
           <item name="def_fastboot_allowed">0</item>
           <item name="def_htc_mobile_network_on">true</item>
+		  <item name="def_hide_ui_user_powersaver">1</item>
+          <item name="def_hide_ui_powersaver_connectivity">1</item>
         </set>
       </function>
     </module>
