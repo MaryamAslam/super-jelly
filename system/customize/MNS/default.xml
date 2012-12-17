@@ -355,6 +355,13 @@
           <item type="file_name" name="preview">steel_panel.jpg</item>
           <!--%%Extra_Preveiw_image_landscape_Mode%%-->
           <!--%%Extra_Normal_image_landscape_Mode%%-->
+        </set>		
+		<set name="plenty" max="10">
+          <item type="file_name" name="thumb">fresh_blue_leaves_w_grid.jpg</item>
+          <item type="file_name" name="image">fresh_blue_leaves_w.jpg</item>
+          <item type="file_name" name="preview">fresh_blue_leaves_w_panel.jpg</item>
+          <!--%%Extra_Preveiw_image_landscape_Mode%%-->
+          <!--%%Extra_Normal_image_landscape_Mode%%-->
         </set>
       </function>      
       <function name="scene_list">
