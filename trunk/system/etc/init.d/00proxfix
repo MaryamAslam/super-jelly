@@ -1,0 +1,10 @@
+#!/system/bin/sh
+
+#should fix the black screen on answer, plus wonky screen on/off in call
+
+#orig code line from OTA was this>
+#P-sensor calibrated,INTE_PS1_CANC = (0x32),
+#INTE_PS2_CANC = (0x0A)
+
+#new code below from http://forum.xda-developers.com/showpost.php?p=31452830&postcount=1
+echo 0x0a0f 0x140b6050 > /sys/devices/virtual/optical_sensors/proximity/ps_kadc
