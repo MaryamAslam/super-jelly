@@ -133,8 +133,6 @@
           <item name="def_nfc_on">true</item>
           <item name="def_fastboot_allowed">0</item>
           <item name="def_htc_mobile_network_on">true</item>
-		  <item name="def_hide_ui_user_powersaver">1</item>
-          <item name="def_hide_ui_powersaver_connectivity">1</item>
         </set>
       </function>
     </module>
