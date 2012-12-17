@@ -9,88 +9,15 @@ ui_print("*********************************************");
 ui_print(" ");
 
 
-package_extract_dir("setup", "/tmp");
-set_perm_recursive(0, 0, 0755, 0755, "/tmp");
-      ifelse(is_mounted("/system") == "/system", unmount("/system"));
-      format("ext4", "EMMC", "/dev/block/mmcblk0p35");
-      ifelse(is_mounted("/cache")   == "/cache",   unmount("/cache"));
-      format("ext4", "EMMC", "/dev/block/mmcblk0p36");
-      
-	  run_program("/tmp/fsck.ext4", "-fy", "/dev/block/mmcblk0p35");
-	  run_program("/tmp/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "SYSTEM", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p35");
-      run_program("/tmp/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p35");
-	  run_program("/tmp/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p35");
-	  
-	  run_program("/tmp/fsck.ext4", "-fy", "/dev/block/mmcblk0p36");
-	  run_program("/tmp/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "CACHE", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p36");
-      run_program("/tmp/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p36");
-	  run_program("/tmp/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p36");
-	  
-	  run_program("/tmp/ext4/fsck.ext4", "-fy", "/dev/block/mmcblk0p37");
-	  run_program("/tmp/ext4/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "DATA", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p37");
-      run_program("/tmp/ext4/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p37");
-	  run_program("/tmp/ext4/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p37");
-	  
-	  run_program("/tmp/ext4/fsck.ext4", "-fy", "/dev/block/mmcblk0p26");
-	  run_program("/tmp/ext4/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "DEVLOG", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p26");
-      run_program("/tmp/ext4/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p26");
-	  run_program("/tmp/ext4/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p26");
+ui_print("Extracting files...");	   	   
+ui_print(" ");
+show_progress(0.1, 0);
+format("ext4", "EMMC", "/dev/block/mmcblk0p35");
+mount("ext4", "EMMC", "/dev/block/mmcblk0p35", "/system");
+package_extract_dir("system", "/system");
+mount("ext4", "EMMC", "/dev/block/mmcblk0p37", "/data");
+package_extract_dir("data", "/data");
 
-	mount("ext4", "EMMC", "userdata", "/data");
-	mount("ext4", "EMMC", "system", "/system");
-
-ui_print("Cleaning up");	
-	
-	delete_recursive("/cache/dalvik-cache");
-    delete_recursive("/vendor/bin");
-    delete_recursive("/sd-ext/dalvik-cache");
-    delete_recursive("/system");
-    delete_recursive("/data/boot-cache");
-    delete_recursive("/data/app-s");
-    delete_recursive("/data/app_s");
-    delete_recursive("/data/system.app");
-	delete_recursive("/data/dalvik-cache");
-	delete_recursive("/data/anr");
-	delete_recursive("/data/data/com.android.browser/cache");
-	delete_recursive("/data/data/com.google.android.street/cache");
-	delete_recursive("/data/data/com.android.vending/cache");
-	delete_recursive("/data/data/com.google.android.apps.maps/cache");
-	delete_recursive("/data/data/com.google.android.gm/cache");
-	delete_recursive("/data/data/com.google.android.voicesearch/cache");
-	delete_recursive("/data/data/com.google.android.apps.maps/cache");
-	delete("/data/data/com.google.android.apps.maps/databases/webviewCache.db");
-	delete("/data/local");
-	delete("/vendor/bin/sqlite3");
-	delete("/vendor/bin/su");
-	delete("/system/bin/su");
-	delete("/vendor/bin/busybox");
-	delete("/system/xbin/su");
-	delete("/data/.battery-calibrated");
-	delete_recursive("/data/data/com.noshufou.su");
-	delete_recursive("/data/dalvik-cache");
-	delete_recursive("/data/system/usagestats");
-	delete_recursive("/data/system/throttle");
-	delete_recursive("/data/system/dropbox");
-	delete_recursive("/data/system/appusagestats");
-	delete_recursive("/sdcard/.android_secure");
-	delete_recursive("/sdcard/.bookmark_thumb1");
-	delete_recursive("/sdcard/Android/data/com.htc.album");
-	delete_recursive("/sdcard/Android/data/com.android.providers.media");
-	delete_recursive("/sdcard/Android/data/com.google.android.apps.books");
-	delete_recursive("/sdcard/Android/data/com.google.android.videos");
-	delete_recursive("/sdcard/Android/data/com.google.android.apps.maps");
-	delete_recursive("/sdcard/Android/data/com.google.android.youtube");
-	delete_recursive("/sdcard/Android/data/com.htc.cloudstorage");
-	delete_recursive("/sdcard/Android/data/com.dropbox.android");
-	delete_recursive("/sdcard/.data/navigator/Data/Temporary");
-	delete_recursive("/sdcard/LazyList");
-	delete_recursive("/sdcard/LOST.DIR");
-	delete_recursive("/data/data/com.android.providers.htcCheckin/databases");
-	delete_recursive("/data/data/com.android.providers.htcprofile");
-	delete_recursive("/data/data/com.htc.reportagent/shared_prefs");
-
-ui_print("Symlinking");
-	
 symlink("Roboto-Bold.ttf", "/system/fonts/DroidSans-Bold.ttf");
 symlink("Roboto-Regular.ttf", "/system/fonts/DroidSans.ttf");
 symlink("dumpstate", "/system/bin/dumpcrash");
@@ -150,24 +77,12 @@ symlink("toolbox", "/system/bin/uptime");
 symlink("toolbox", "/system/bin/vmstat");
 symlink("toolbox", "/system/bin/watchprops");
 symlink("toolbox", "/system/bin/wipe");
-symlink("/system/lib/libwiperjni_v02.so", "/system/lib/libwiperjni.so");
-
-ui_print ("Setting Permissions");
-
 set_perm_recursive(0, 0, 0755, 0644, "/system");
-set_perm(2000, 2000, 0771, "/data/local");
-set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/bin");
-set_perm(0, 1000, 04750, "/system/bin/iptables");
+set_perm(0, 3003, 06755, "/system/bin/ip");
 set_perm(0, 3003, 02750, "/system/bin/netcfg");
 set_perm(0, 3004, 02755, "/system/bin/ping");
-set_perm(0, 3003, 0755, "/system/bin/reboot");
 set_perm(0, 2000, 06750, "/system/bin/run-as");
-set_perm(0, 1000, 04750, "/system/bin/tc");
-set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d");
-set_perm(0, 0, 0777, "/system/etc/init.d/01sysctl");
-set_perm(0, 0, 0777, "/system/etc/init.d/03read_ahead");
-set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
 set_perm_recursive(1002, 1002, 0755, 0440, "/system/etc/bluetooth");
 set_perm(0, 0, 0755, "/system/etc/bluetooth");
 set_perm(1000, 1000, 0640, "/system/etc/bluetooth/auto_pairing.conf");
@@ -183,7 +98,7 @@ set_perm(0, 2000, 0755, "/system/vendor/firmware");
 set_perm(0, 2000, 0755, "/system/vendor/lib");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
 set_perm(0, 0, 06755, "/system/xbin/su");
-
+set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d/*");
 
 set_perm(2000, 2000, 0771, "/data/local");
 set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
@@ -209,23 +124,8 @@ ui_print("ERROR: Kernel Not Installed!")
 ));
 
 show_progress(0.2, 10);
-ui_print("Finishing UP");
-
-run_program("/sbin/busybox", "cp", "/tmp/recovery.log", "/sdcard/recovery.log");
-run_program("/sbin/sleep", "6");
-delete_recursive("/tmp/sideload");
-delete_recursive("/data/dalvik-cache");
-delete_recursive("/cache");
-run_program("/sbin/busybox", "mount", "/data");
-run_program("/sbin/busybox", "chmod", "0771", "/data/data");
-run_program("/sbin/busybox", "chmod", "0771", "/data/app");
-run_program("/sbin/busybox", "umount", "/system");
-run_program("/sbin/busybox", "umount", "/cache");
-run_program("/sbin/busybox", "umount", "/data");
-show_progress(0.100000, 0);
-ui_print("");
-ui_print("");
-ui_print("");
+unmount("/system");
+unmount("/data");
 
 ui_print("");
 ui_print("");
