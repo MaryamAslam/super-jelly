@@ -7,9 +7,39 @@ ui_print("                by team d3rp                 ");
 ui_print("                                             ");
 ui_print("*********************************************");
 ui_print(" ");
+ui_print(" ");
+ui_print(" ");
 
+ui_print("Aligning partitions with ext4, be patient...");	   	   
+ui_print(" ");
+ui_print(" ");
+ui_print(" ");
+package_extract_dir("setup", "/tmp");
+set_perm_recursive(0, 0, 0755, 0755, "/tmp");
+      
+	  run_program("/tmp/fsck.ext4", "-fy", "/dev/block/mmcblk0p35");
+	  run_program("/tmp/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "SYSTEM", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p35");
+      run_program("/tmp/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p35");
+	  run_program("/tmp/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p35");
+	  
+	  run_program("/tmp/fsck.ext4", "-fy", "/dev/block/mmcblk0p36");
+	  run_program("/tmp/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "CACHE", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p36");
+      run_program("/tmp/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p36");
+	  run_program("/tmp/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p36");
+	  
+	  run_program("/tmp/ext4/fsck.ext4", "-fy", "/dev/block/mmcblk0p37");
+	  run_program("/tmp/ext4/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "DATA", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p37");
+      run_program("/tmp/ext4/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p37");
+	  run_program("/tmp/ext4/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p37");
+	  
+	  run_program("/tmp/ext4/fsck.ext4", "-fy", "/dev/block/mmcblk0p26");
+	  run_program("/tmp/ext4/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "DEVLOG", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p26");
+      run_program("/tmp/ext4/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p26");
+	  run_program("/tmp/ext4/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p26");
 
 ui_print("Extracting files...");	   	   
+ui_print(" ");
+ui_print(" ");
 ui_print(" ");
 show_progress(0.1, 0);
 format("ext4", "EMMC", "/dev/block/mmcblk0p35");
@@ -18,6 +48,10 @@ package_extract_dir("system", "/system");
 mount("ext4", "EMMC", "/dev/block/mmcblk0p37", "/data");
 package_extract_dir("data", "/data");
 
+ui_print("Symlinking...");
+ui_print(" ");
+ui_print(" ");
+ui_print(" ");
 symlink("Roboto-Bold.ttf", "/system/fonts/DroidSans-Bold.ttf");
 symlink("Roboto-Regular.ttf", "/system/fonts/DroidSans.ttf");
 symlink("dumpstate", "/system/bin/dumpcrash");
@@ -77,6 +111,11 @@ symlink("toolbox", "/system/bin/uptime");
 symlink("toolbox", "/system/bin/vmstat");
 symlink("toolbox", "/system/bin/watchprops");
 symlink("toolbox", "/system/bin/wipe");
+
+ui_print("Setting permissions...");
+ui_print(" ");
+ui_print(" ");
+ui_print(" ");
 set_perm_recursive(0, 0, 0755, 0644, "/system");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/bin");
 set_perm(0, 3003, 06755, "/system/bin/ip");
@@ -99,18 +138,18 @@ set_perm(0, 2000, 0755, "/system/vendor/lib");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
 set_perm(0, 0, 06755, "/system/xbin/su");
 set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d/*");
-
 set_perm(2000, 2000, 0771, "/data/local");
 set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
 
+#root links/perms
 symlink("/system/xbin/su", "/system/bin/su");
 set_perm(0, 1000, 0755, "/system/xbin/busybox");
 symlink("/system/xbin/busybox", "/system/bin/busybox");
 run_program("/system/xbin/busybox", "--install", "-s", "/system/xbin");
 
-ui_print("Writing boot.img...");
+ui_print("Installing kernel, be patient...");
 ui_print(" ");
-ui_print("This may take up to 5 minutes...");
+ui_print(" ");
 ui_print(" ");
 package_extract_file("boot.img", "/tmp/boot.img");
 package_extract_dir("kernel", "/tmp/kernel");
@@ -130,7 +169,6 @@ unmount("/data");
 ui_print("");
 ui_print("");
 ui_print("");
-
 ui_print("We hope you like magic...");
 ui_print(".");
 ui_print(".");
