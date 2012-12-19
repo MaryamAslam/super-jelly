@@ -52,20 +52,10 @@ set_perm_recursive(0, 0, 0755, 0755, "/tmp");
       run_program("/tmp/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p35");
 	  run_program("/tmp/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p35");
 	  
-	  run_program("/tmp/fsck.ext4", "-fy", "/dev/block/mmcblk0p36");
-	  run_program("/tmp/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "CACHE", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p36");
-      run_program("/tmp/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p36");
-	  run_program("/tmp/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p36");
-	  
 	  run_program("/tmp/ext4/fsck.ext4", "-fy", "/dev/block/mmcblk0p37");
 	  run_program("/tmp/ext4/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "DATA", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p37");
       run_program("/tmp/ext4/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p37");
 	  run_program("/tmp/ext4/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p37");
-	  
-	  run_program("/tmp/ext4/fsck.ext4", "-fy", "/dev/block/mmcblk0p26");
-	  run_program("/tmp/ext4/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "DEVLOG", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p26");
-      run_program("/tmp/ext4/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p26");
-	  run_program("/tmp/ext4/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p26");
 
 ui_print("Extracting files...");	   	   
 ui_print(" ");
