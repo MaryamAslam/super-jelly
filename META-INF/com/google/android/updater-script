@@ -62,6 +62,7 @@ ui_print(" ");
 ui_print(" ");
 ui_print(" ");
 show_progress(0.1, 0);
+run_program("/sbin/sleep", "6");
 mount("ext4", "EMMC", "/dev/block/mmcblk0p35", "/system");
 package_extract_dir("system", "/system");
 mount("ext4", "EMMC", "/dev/block/mmcblk0p37", "/data");
@@ -71,6 +72,7 @@ ui_print("Symlinking...");
 ui_print(" ");
 ui_print(" ");
 ui_print(" ");
+run_program("/sbin/sleep", "6");
 symlink("Roboto-Bold.ttf", "/system/fonts/DroidSans-Bold.ttf");
 symlink("Roboto-Regular.ttf", "/system/fonts/DroidSans.ttf");
 symlink("dumpstate", "/system/bin/dumpcrash");
@@ -135,8 +137,21 @@ ui_print("Setting permissions...");
 ui_print(" ");
 ui_print(" ");
 ui_print(" ");
+run_program("/sbin/sleep", "6");
 set_perm_recursive(0, 0, 0755, 0644, "/system");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/bin");
+set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d");
+set_perm(0, 0, 0777, "/system/etc/init.d/00proxfix");
+set_perm(0, 0, 0777, "/system/etc/init.d/01sysctl");
+set_perm(0, 0, 0777, "/system/etc/init.d/02sdcard");
+set_perm(0, 0, 0777, "/system/xbin/sysrw");
+set_perm(0, 0, 0777, "/system/xbin/sysro");
+set_perm(0, 0, 04755, "/system/xbin/zipalign");
+set_perm(0, 0, 04755, "/system/xbin/sqlite3");
+set_perm(0, 0, 04755, "/system/xbin/dexdump");
+set_perm(0, 0, 04755, "/system/xbin/busybox");
+set_perm(0, 0, 04755, "/system/xbin/bttest");
+set_perm(0, 0, 06755, "/system/bin/su");
 set_perm(0, 3003, 06755, "/system/bin/ip");
 set_perm(0, 3003, 02750, "/system/bin/netcfg");
 set_perm(0, 3004, 02755, "/system/bin/ping");
@@ -156,11 +171,12 @@ set_perm(0, 2000, 0755, "/system/vendor/firmware");
 set_perm(0, 2000, 0755, "/system/vendor/lib");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
 set_perm(0, 0, 06755, "/system/xbin/su");
-set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d/*");
+set_perm(0, 0, 0644, "/system/app/Superuser.apk");
 set_perm(2000, 2000, 0771, "/data/local");
 set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
 
 #root links/perms
+run_program("/sbin/sleep", "6");
 symlink("/system/xbin/su", "/system/bin/su");
 set_perm(0, 1000, 0755, "/system/xbin/busybox");
 symlink("/system/xbin/busybox", "/system/bin/busybox");
@@ -170,6 +186,7 @@ ui_print("Installing kernel, this may take a while...");
 ui_print(" ");
 ui_print(" ");
 ui_print(" ");
+run_program("/sbin/sleep", "6");
 package_extract_file("boot.img", "/tmp/boot.img");
 package_extract_dir("kernel", "/tmp/kernel");
 set_perm_recursive(0, 2000, 0777, 0777, "/tmp/kernel");
@@ -181,6 +198,8 @@ ui_print("ERROR: Kernel Not Installed!")
 )
 ));
 
+
+run_program("/sbin/busybox", "cp", "/tmp/recovery.log", "/sdcard/recovery.log");
 show_progress(0.2, 10);
 unmount("/system");
 unmount("/data");
