@@ -20,7 +20,8 @@ gsm.sim.operator.iso-country=us
 gsm.operator.iso-country=us
 ro.net.apnwhitelist=admin
 ro.htc.checkin.delay=0
-ro.da1.enable=true
+ro.da1.enable=false
+ro.da1.method=false
 ro.watch.appid=com.sdgtl.watch.jelcl_45_jb_s
 ro.telephony.ipv6_capability=1
 dev.defaultwallpaper=/system/customize/resource/scene_wallpaper_htc_default.jpg
@@ -283,6 +284,13 @@ ro.bt.tetheringUI=1
 
 #Hide ADB debugging icon
 persist.adb.notify=0
+
+#StageFright
+media.stagefright.enable-player=true 
+media.stagefright.enable-record=true 
+media.stagefright.enable-http=true
+media.stagefright.enable-meta=true 
+media.stagefright.enable-scan=true
 
 #add ons
 ro.media.enc.jpeg.quality=100 

@@ -706,13 +706,14 @@
           <item name="provider">Verizon</item>
           <item name="domain">verizon.net</item>
           <item name="inserver">incoming.verizon.net</item>
-          <item name="inport">993</item>
+          <item name="inport">110</item>
           <item name="outserver">outgoing.verizon.net</item>
-          <item name="outport">465</item>
-          <item name="inprotocol">IMAP</item>
-          <item name="useSSLin">1</item>
-          <item name="useSSLout">1</item>
-          <item name="providerGroup">Yahoo</item>
+          <item name="outport">25</item>
+          <item name="inprotocol">POP</item>
+          <item name="useSSLin">0</item>
+          <item name="useSSLout">0</item>
+          <item name="providerGroup">Verizon</item>
+
         </set>
         <set name="plenty" max="10">
           <item name="provider">BT</item>
