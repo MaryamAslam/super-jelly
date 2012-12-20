@@ -144,3 +144,6 @@ fi
 mount -o remount,nodev,nodiratime,noatime,delalloc,noauto_da_alloc,barrier=1 /system /system
 mount -o remount,nodev,nodiratime,noatime,delalloc,noauto_da_alloc,barrier=0 /cache /cache
 mount -o remount,nodev,nodiratime,noatime,delalloc,noauto_da_alloc,barrier=0 /data /data  
+
+# mount system rw
+/system/xbin/sysrw
