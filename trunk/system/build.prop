@@ -337,3 +337,6 @@ ro.EMPTY_APP_ADJ=15
 ro.HOME_APP_ADJ=1
 ro.HOME_APP_MEM=4096
 
+
+# ROM version
+ro.modversion=SuperJelly
