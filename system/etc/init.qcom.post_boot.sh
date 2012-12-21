@@ -146,4 +146,4 @@ mount -o remount,nodev,nodiratime,noatime,delalloc,noauto_da_alloc,barrier=0 /ca
 mount -o remount,nodev,nodiratime,noatime,delalloc,noauto_da_alloc,barrier=0 /data /data  
 
 # mount system rw
-/system/xbin/sysrw
+mount -o remount,rw /dev/block/mmcblk0p35 /system
