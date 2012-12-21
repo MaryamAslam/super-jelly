@@ -448,10 +448,10 @@
     <module name="multimedia">
       <function name="HtcStreamPlayer">
         <set name="single">
-          <item name="default_rtsp_proxy_ip">rtsp.vog.sprintpcs.com</item>
-          <item name="default_rtsp_proxy_port">554</item>
-          <item name="default_http_proxy_ip">pd.vog.sprintpcs.com</item>
-          <item name="default_http_proxy_port">8085</item>
+          <item name="default_rtsp_proxy_ip">0.0.0.0</item>
+          <item name="default_rtsp_proxy_port">0</item>
+          <item name="default_http_proxy_ip">0.0.0.0</item>
+          <item name="default_http_proxy_port">0</item>
         </set>
       </function>
     </module>

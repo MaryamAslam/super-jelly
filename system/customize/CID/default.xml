@@ -62,6 +62,8 @@
           <item name="turn_off_report" type="boolean">yes</item>
           <item name="turn_off_application_log" type="boolean">yes</item>
           <item name="only_wifi_option" type="boolean">yes</item>
+		   <item name="turn_off_tell_htc" type="boolean">yes</item>
+          <item name="hide_usage_report" type="boolean">yes</item>
         </set>
       </function>
     </module>
@@ -133,6 +135,7 @@
           <item name="def_nfc_on">true</item>
           <item name="def_fastboot_allowed">0</item>
           <item name="def_htc_mobile_network_on">true</item>
+		   <item name="def_install_non_market_apps" type="boolean">yes</item>
         </set>
       </function>
     </module>
