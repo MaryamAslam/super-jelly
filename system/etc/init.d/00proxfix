@@ -8,3 +8,25 @@
 
 #new code below from http://forum.xda-developers.com/showpost.php?p=31452830&postcount=1
 echo 0x0a0f 0x140b6050 > /sys/devices/virtual/optical_sensors/proximity/ps_kadc
+
+#this next is from mike
+# This should fix instances where the phone wakes
+# but the screen is black.  Has been found to
+# solve at least some of the proximity sensor issues
+
+(while [ 1 ]; do
+ SLEEPING=`cat /sys/power/wait_for_fb_sleep`
+ if [ $SLEEPING = "sleeping" ]; then
+  SLEEPING=
+ fi
+ AWAKE=`cat /sys/power/wait_for_fb_wake`
+ if [ $AWAKE = "awake" ]; then
+  if [ -e /sys/class/leds/lcd-backlight/brightness ]; then
+   BRIGHTNESS=`cat /sys/class/leds/lcd-backlight/brightness`
+   if [ $BRIGHTNESS -lt 20 ]; then
+    echo "65" > /sys/class/leds/lcd-backlight/brightness
+   fi
+  fi
+  AWAKE=
+ fi
+done &)
