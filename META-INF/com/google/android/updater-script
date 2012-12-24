@@ -109,7 +109,6 @@ symlink("toolbox", "/system/bin/newfs_msdos");
 symlink("toolbox", "/system/bin/notify");
 symlink("toolbox", "/system/bin/printenv");
 symlink("toolbox", "/system/bin/ps");
-symlink("toolbox", "/system/bin/reboot");
 symlink("toolbox", "/system/bin/renice");
 symlink("toolbox", "/system/bin/rm");
 symlink("toolbox", "/system/bin/rmdir");
