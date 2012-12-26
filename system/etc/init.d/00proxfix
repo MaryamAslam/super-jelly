@@ -22,6 +22,7 @@ echo 0x0a0f 0x140b6050 > /sys/devices/virtual/optical_sensors/proximity/ps_kadc
  AWAKE=`cat /sys/power/wait_for_fb_wake`
  if [ $AWAKE = "awake" ]; then
   if [ -e /sys/class/leds/lcd-backlight/brightness ]; then
+   usleep 500000
    BRIGHTNESS=`cat /sys/class/leds/lcd-backlight/brightness`
    if [ $BRIGHTNESS -lt 20 ]; then
     echo "65" > /sys/class/leds/lcd-backlight/brightness
