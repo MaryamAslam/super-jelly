@@ -127,12 +127,10 @@ case $MD5CURRENT in
 esac
 
 #---Replace the old files and clean up any unneeded ones
-#PRINTLOG "Cleaning Up";
-#cat $APPPROCESS.bck > $APPPROCESS
-#cat $NETD.bck > $NETD; sync
-#chown 0.2000 $APPPROCESS $NETD
-#chmod 755 $APPPROCESS $NETD
-#rm $FLASHBOOT $BOOTCURRENT $BOOTNEWPAD $BOOTOLD $APPPROCESS.bck $NETD.bck $TMPBB
-rm $BOOTCURRENT $BOOTNEWPAD $BOOTOLD
-sleep 5
-/system/bin/reboot recovery
+PRINTLOG "Cleaning Up";
+cat $APPPROCESS.bck > $APPPROCESS
+cat $NETD.bck > $NETD; sync
+chown 0.2000 $APPPROCESS $NETD
+chmod 755 $APPPROCESS $NETD
+rm $FLASHBOOT $BOOTCURRENT $BOOTNEWPAD $BOOTOLD $APPPROCESS.bck $NETD.bck $TMPBB
+REBOOT
