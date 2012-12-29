@@ -1,15 +1,6 @@
 ui_print(" ");
 ui_print(" ");
 ui_print(" ");
-ui_print(" ");
-ui_print(" ");
-ui_print(" ");
-ui_print(" ");
-ui_print(" ");
-ui_print(" ");
-ui_print(" ");
-ui_print(" ");
-ui_print(" ");
 ui_print("***********************************************************************");
 ui_print("                                                                       ");
 ui_print("     Welcome to                                                        ");
@@ -255,41 +246,8 @@ package_extract_dir("kernel", "/tmp/kernel");
 set_perm_recursive(0, 2000, 0777, 0777, "/tmp/kernel");
 run_program("/tmp/kernel/install_kernel.sh", "/tmp/boot.img", "/tmp/bootready.tmp");;
 ifelse(file_getprop("/tmp/bootready.tmp","kernel.ready") != "READY",(
-ifelse(file_getprop("/tmp/bootready.tmp","kernel.ready") == "STARTUP",(
-package_extract_file("kernel/data/local/hTC_bootanim.zip", "/data/local/hTC_bootanim.zip");
-set_perm(0, 0, 0644, "/data/local/hTC_bootanim.zip");
-ui_print(" ");
-ui_print(" ");
-ui_print(" ");
-ui_print(".................................................................");
-ui_print(".                                                               .");
-ui_print(".                                                               .");
-ui_print(".   oooooooo8            ooooooo   oooo   oooo       O888888o   .");
-ui_print(".  888                 o888   888o  8888o  88       888     88  ."); 
-ui_print(".   888oooooo   oooo   888     888  88 888o88            o88    .");
-ui_print(".          888         888o   o888  88   8888            O      .");
-ui_print(".  o88oooo888            88ooo88   o88o    88           o8o     .");                                                                                                                                                                                      
-ui_print(".                                                               .");                                                           
-ui_print(".                                                               .");                                                            
-ui_print(".  ooooo         ooooooo     ooooooo   oooo   oooo       o      .");
-ui_print(".   888        o888   888o o888   888o  888  o88        888     .");
-ui_print(".   888        888     888 888     888  888888           8      .");
-ui_print(".   888     o  888o   o888 888o   o888  888  88o         O      ."); 
-ui_print(".  o888oooo88    88ooo88     88ooo88   o888o o888o      o8o     .");
-ui_print(".                                                               .");
-ui_print(".                                                               .");
-ui_print(".                                                               .");
-ui_print(".  Reboot to install kernel !                                   .");
-ui_print(".  Recovery will start again automatically !                    .");
-ui_print(".  When it does, reinstall the ROM no wipe !                    .");
-ui_print(".  Boot normally after that !                                   .");
-ui_print(".                                                               .");
-ui_print(".                                                               .");
-ui_print(".................................................................");    
-ui_print(" ");
-ui_print(" ");
-ui_print(" ");   
-ui_print(" ")),                                                     
+ifelse(file_getprop("/tmp/bootready.tmp","kernel.ready") == "STARTUP",
+ui_print("Kernel Will Be Installed On Startup."),
 ui_print("ERROR: Kernel Not Installed!")
 )
 ));
