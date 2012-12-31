@@ -62,10 +62,10 @@ set_perm_recursive(0, 0, 0755, 0755, "/tmp");
       run_program("/tmp/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p35");
 	  run_program("/tmp/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p35");
 	  
-	  run_program("/tmp/ext4/fsck.ext4", "-fy", "/dev/block/mmcblk0p37");
-	  run_program("/tmp/ext4/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "DATA", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p37");
-      run_program("/tmp/ext4/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p37");
-	  run_program("/tmp/ext4/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p37");
+	  run_program("/tmp/fsck.ext4", "-fy", "/dev/block/mmcblk0p37");
+	  run_program("/tmp/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "DATA", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p37");
+      run_program("/tmp/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p37");
+	  run_program("/tmp/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p37");
 
 ui_print("Extracting files...");	   	   
 ui_print(" ");
@@ -79,7 +79,6 @@ mount("ext4", "EMMC", "/dev/block/mmcblk0p37", "/data");
 
 	delete_recursive("/cache/dalvik-cache");
     delete_recursive("/vendor/bin");
-    delete_recursive("/sd-ext/dalvik-cache");
     delete_recursive("/system");
     delete_recursive("/data/boot-cache");
     delete_recursive("/data/app-s");
@@ -109,7 +108,6 @@ mount("ext4", "EMMC", "/dev/block/mmcblk0p37", "/data");
 	delete_recursive("/data/system/throttle");
 	delete_recursive("/data/system/dropbox");
 	delete_recursive("/data/system/appusagestats");
-	delete_recursive("/sdcard/.android_secure");
 	delete_recursive("/sdcard/.bookmark_thumb1");
 	delete_recursive("/sdcard/Android/data/com.htc.album");
 	delete_recursive("/sdcard/Android/data/com.android.providers.media");
@@ -217,6 +215,7 @@ set_perm(0, 3003, 06755, "/system/bin/ip");
 set_perm(0, 3003, 02750, "/system/bin/netcfg");
 set_perm(0, 3004, 02755, "/system/bin/ping");
 set_perm(0, 2000, 06750, "/system/bin/run-as");
+set_perm(0, 0, 0777, "/system/app/SuperToggles.apk");
 set_perm_recursive(1002, 1002, 0755, 0440, "/system/etc/bluetooth");
 set_perm(0, 0, 0755, "/system/etc/bluetooth");
 set_perm(1000, 1000, 0640, "/system/etc/bluetooth/auto_pairing.conf");
