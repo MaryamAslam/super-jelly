@@ -102,6 +102,7 @@ mount("ext4", "EMMC", "/dev/block/mmcblk0p37", "/data");
 	delete("/vendor/bin/busybox");
 	delete("/system/xbin/su");
 	delete("/data/.battery-calibrated");
+	delete("/data/property/sys.persist.skin");	
 	delete_recursive("/data/data/com.noshufou.su");
 	delete_recursive("/data/dalvik-cache");
 	delete_recursive("/data/system/usagestats");
