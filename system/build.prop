@@ -348,6 +348,8 @@ ro.EMPTY_APP_ADJ=15
 ro.HOME_APP_ADJ=1
 ro.HOME_APP_MEM=4096
 
+# DEFAULT SKIN
+persist.sys.skin=com.htc.skin.MattedSky
 
 # ROM version
 ro.modversion=SuperJelly
