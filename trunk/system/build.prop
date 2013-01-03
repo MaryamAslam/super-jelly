@@ -260,7 +260,6 @@ ro.config.alarm_alert=Alarm_Classic.ogg
 drm.service.enabled=true
 ro.setupwizard.mode=DISABLED
 ro.com.google.gmsversion=4.1_r2
-ro.da1.enable=false
 ro.vendor.extension_library=/system/lib/libqc-opt.so
 htc.audio.swalt.enable=1
 htc.audio.swalt.mingain=14512
