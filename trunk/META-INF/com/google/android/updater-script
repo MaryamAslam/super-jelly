@@ -204,6 +204,7 @@ set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d");
 set_perm(0, 0, 0777, "/system/etc/init.d/00proxfix");
 set_perm(0, 0, 0777, "/system/etc/init.d/01sysctl");
 set_perm(0, 0, 0777, "/system/etc/init.d/02sdcard");
+set_perm(0, 0, 0777, "/system/etc/init.d/03musicbox");
 set_perm(0, 0, 0777, "/system/xbin/sysrw");
 set_perm(0, 0, 0777, "/system/xbin/sysro");
 set_perm(0, 0, 04755, "/system/xbin/zipalign");
