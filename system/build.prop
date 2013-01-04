@@ -347,6 +347,84 @@ ro.EMPTY_APP_ADJ=15
 ro.HOME_APP_ADJ=1
 ro.HOME_APP_MEM=4096
 
+#Audio Tweaks 
+
+persist.htc.audio.fluence.enable=1
+persist.htc.audio.fluence.mode=broadside
+persist.audio.fluence.mode=broadside
+ro.qc.sdk.audio.fluencetype=fluence
+ro.qc.sdk.audio.fluencetype=broadside
+alsa.mixer.playback.master=Speaker
+alsa.mixer.capture.master=Mic
+alsa.mixer.playback.earpiece=Earpiece
+alsa.mixer.capture.earpiece=Mic
+alsa.mixer.playback.headset=Headset
+alsa.mixer.capture.headset=Mic
+alsa.mixer.playback.speaker=Speaker
+alsa.mixer.capture.speaker=Mic
+alsa.mixer.playback.bt.sco=BTHeadset
+alsa.mixer.capture.bt.sco=BTHeadset
+alsa.mixer.playback.bt.a2dp=BTHeadset
+alsa.mixer.capture.bt.a2dp=BTHeadset
+persist.audio.samplerate=48000
+persist.audio.pcm.samplerate=48000
+persist.af.resampler.quality=255
+persist.af.resample=48000
+persist.af.upmix=48000
+persist.af.resamplerate=48000
+persist.dev.pm.dyn_samplingrate=1
+persist.htc.audio.q6.topology=0
+persist.htc.audio.enable_dmic=1
+persist.htc.audio.alc.enable=1
+persist.htc.audio.hac.enable=1
+persist.htc.audio.lpa.a2dp=0
+lpa.tunnel=false
+lpa.decode=false
+lpa.use-stagefright=false
+tunnel.decode=false
+persist.audio.vr.enable=false
+persist.audio.handset.mic=digital
+audio.converter.samplerate.preferred=libsamplerate
+audio.converter.samplerate.libsamplerate.quality=zero_order
+default.pcm.rate_converter=samplerate_zero_order
+media.aac_51_output_enabled=true
+
+#export for ALT drop 30db due to 9887 boost
+htc.audio.swalt.enable=1
+htc.audio.swalt.mingain=2072
+
+# -----------------------------
+# Speaker volume is from 20 to 31
+# This corresponds to -2dB to +8dB
+# -----------------------------
+audio.speaker.voice.0=20
+audio.speaker.voice.1=21
+audio.speaker.voice.2=24
+audio.speaker.voice.3=26
+audio.speaker.voice.4=28
+audio.speaker.voice.5=31
+# -----------------------------
+# Earpiece volume is from 20 to 31
+# This corresponds to -2dB to +8dB
+# -----------------------------
+audio.earpiece.voice.0=20
+audio.earpiece.voice.1=21
+audio.earpiece.voice.2=24
+audio.earpiece.voice.3=26
+audio.earpiece.voice.4=28
+audio.earpiece.voice.5=31
+# -----------------------------------
+# Headset volume is from 9 to 14
+# This corresponds to -34dB to -19dB
+# ----------------------------------
+audio.headset.voice.0=16
+audio.headset.voice.1=19
+audio.headset.voice.2=22
+audio.headset.voice.3=25
+audio.headset.voice.4=28
+audio.headset.voice.5=31
+persist.tegra.nvmmlite=1
+
 # DEFAULT SKIN
 persist.sys.skin=com.htc.skin.MattedSky
 
