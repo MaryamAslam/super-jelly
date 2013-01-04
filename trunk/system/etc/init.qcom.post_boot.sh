@@ -1,29 +1,4 @@
 #!/system/bin/sh
-# Copyright (c) 2009-2012, Code Aurora Forum. All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are met:
-#     * Redistributions of source code must retain the above copyright
-#       notice, this list of conditions and the following disclaimer.
-#     * Redistributions in binary form must reproduce the above copyright
-#       notice, this list of conditions and the following disclaimer in the
-#       documentation and/or other materials provided with the distribution.
-#     * Neither the name of Code Aurora nor
-#       the names of its contributors may be used to endorse or promote
-#       products derived from this software without specific prior written
-#       permission.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-# IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
-# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
-# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
 target=`getprop ro.board.platform`
@@ -80,6 +55,107 @@ case "$target" in
         start adaptive
     ;;
 esac
+
+# Optimize SQlite databases of apps
+if [ -e /data/adrenaline/engine/etc/sq_c ]; then
+	echo "SQlite Counter File Exists"
+	CNT=/data/adrenaline/engine/etc/sq_c
+	SC=`cat $CNT`
+	if [ $SC -eq 0 ]; then
+		echo "1" > $CNT
+		echo "First Boot"
+		exit
+	elif [ $SC -eq 1 ]; then
+		echo "2" > $CNT
+		echo "Second Boot"
+		exit
+	elif [ $SC -eq 2 ]; then
+		echo "3" > $CNT
+		echo "Third Boot"
+		exit
+	elif [ $SC -eq 3 ]; then
+		echo "4" > $CNT
+		echo "Forth Boot"
+		exit
+	elif [ $SC -eq 4 ]; then
+		echo "Fifth Boot"
+		echo "Now Optimizing"
+		rm -f /data/adrenaline/engine/etc/sq_c
+		touch /data/adrenaline/engine/etc/sq_c
+		echo "0" > /data/adrenaline/engine/etc/sq_c
+		for i in \
+		`busybox find /data -iname "*.db"`; 
+		do \
+			/system/xbin/sqlite3 $i 'VACUUM;'; 
+			/system/xbin/sqlite3 $i 'REINDEX;'; 
+		done;
+
+		if [ -d "/dbdata" ]; then
+			for i in \
+			`busybox find /dbdata -iname "*.db"`; 
+			do \
+				/system/xbin/sqlite3 $i 'VACUUM;'; 
+				/system/xbin/sqlite3 $i 'REINDEX;'; 
+			done;
+		fi;
+
+
+		if [ -d "/datadata" ]; then
+			for i in \
+			`busybox find /datadata -iname "*.db"`; 
+			do \
+				/system/xbin/sqlite3 $i 'VACUUM;'; 
+				/system/xbin/sqlite3 $i 'REINDEX;'; 
+			done;
+		fi;
+
+
+		for i in \
+		`busybox find /sdcard -iname "*.db"`; 
+		do \
+			/system/xbin/sqlite3 $i 'VACUUM;'; 
+			/system/xbin/sqlite3 $i 'REINDEX;'; 
+		done;
+	fi;
+else
+	touch /data/adrenaline/engine/etc/sq_c
+	echo "0" > /data/adrenaline/engine/etc/sq_c
+	echo "First Installation"
+	echo "Now Optimizing"
+		for i in \
+		`busybox find /data -iname "*.db"`; 
+		do \
+			/system/xbin/sqlite3 $i 'VACUUM;'; 
+			/system/xbin/sqlite3 $i 'REINDEX;'; 
+		done;
+
+		if [ -d "/dbdata" ]; then
+			for i in \
+			`busybox find /dbdata -iname "*.db"`; 
+			do \
+				/system/xbin/sqlite3 $i 'VACUUM;'; 
+				/system/xbin/sqlite3 $i 'REINDEX;'; 
+			done;
+		fi;
+
+
+		if [ -d "/datadata" ]; then
+			for i in \
+			`busybox find /datadata -iname "*.db"`; 
+			do \
+				/system/xbin/sqlite3 $i 'VACUUM;'; 
+				/system/xbin/sqlite3 $i 'REINDEX;'; 
+			done;
+		fi;
+
+
+		for i in \
+		`busybox find /sdcard -iname "*.db"`; 
+		do \
+			/system/xbin/sqlite3 $i 'VACUUM;'; 
+			/system/xbin/sqlite3 $i 'REINDEX;'; 
+		done;
+fi;
 
 #capleds
 echo 2 > /sys/class/leds/button-backlight/currents
@@ -139,11 +215,11 @@ if $TEST -f $SQLITE ; then
     $LOG -p i "Fixing contacts restrictions"
     $SQLITE $CONTACT_DB 'UPDATE raw_contacts SET is_restricted=0 WHERE is_restricted=1';
 fi
-  
-if [ -e /data/data/com.android.providers.contacts/databases/contacts2.db ] ; then
+  fi
+  if [ -e /data/data/com.android.providers.contacts/databases/contacts2.db ] ; then
    /system/xbin/sqlite3 /data/data/com.android.providers.contacts/databases/contacts2.db VACUUM
    /system/xbin/sqlite3 /data/data/com.android.providers.contacts/databases/contacts2.db REINDEX
-fi 
+  fi 
 
 # Optimized remounts
 mount -o remount,nodev,nodiratime,noatime,delalloc,noauto_da_alloc,barrier=1 /system /system
