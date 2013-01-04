@@ -139,11 +139,11 @@ if $TEST -f $SQLITE ; then
     $LOG -p i "Fixing contacts restrictions"
     $SQLITE $CONTACT_DB 'UPDATE raw_contacts SET is_restricted=0 WHERE is_restricted=1';
 fi
-  fi
-  if [ -e /data/data/com.android.providers.contacts/databases/contacts2.db ] ; then
+  
+if [ -e /data/data/com.android.providers.contacts/databases/contacts2.db ] ; then
    /system/xbin/sqlite3 /data/data/com.android.providers.contacts/databases/contacts2.db VACUUM
    /system/xbin/sqlite3 /data/data/com.android.providers.contacts/databases/contacts2.db REINDEX
-  fi 
+fi 
 
 # Optimized remounts
 mount -o remount,nodev,nodiratime,noatime,delalloc,noauto_da_alloc,barrier=1 /system /system
