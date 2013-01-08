@@ -59,19 +59,19 @@
     <module name="Crash_Report">
       <function name="setting">
         <set name="single">
-          <item name="turn_off_report" type="boolean">yes</item>
-          <item name="turn_off_application_log" type="boolean">yes</item>
-          <item name="only_wifi_option" type="boolean">yes</item>
-		   <item name="turn_off_tell_htc" type="boolean">yes</item>
-          <item name="hide_usage_report" type="boolean">yes</item>
+          <item name="turn_off_report" type="boolean">true</item>
+          <item name="turn_off_application_log" type="boolean">true</item>
+          <item name="only_wifi_option" type="boolean">true</item>
+		  <item name="turn_off_tell_htc" type="boolean">true</item>
+          <item name="hide_usage_report" type="boolean">true</item>
         </set>
       </function>
     </module>
     <module name="FOTA">
       <function name="settings">
         <set name="single">
-          <item name="Enable_FOTA_UI" type="boolean">no</item>
-          <item name="Enable_Manual_Check" type="boolean">no</item>
+          <item name="Enable_FOTA_UI" type="boolean">false</item>
+          <item name="Enable_Manual_Check" type="boolean">false</item>
         </set>
       </function>
     </module>
@@ -119,8 +119,8 @@
     <module name="OOBE">
       <function name="Step_Config">
         <set name="single">
-          <item name="Set_Language" type="boolean">no</item>
-          <item name="Internet_Connection" type="boolean">no</item>
+          <item name="Set_Language" type="boolean">false</item>
+          <item name="Internet_Connection" type="boolean">false</item>
         </set>
       </function>
     </module>
@@ -132,10 +132,11 @@
     <module name="res">
       <function name="values">
         <set name="single">
-          <item name="def_nfc_on">true</item>
-          <item name="def_fastboot_allowed">0</item>
-          <item name="def_htc_mobile_network_on">true</item>
-		   <item name="def_install_non_market_apps" type="boolean">yes</item>
+          <item name="def_nfc_on" type="boolean">true</item>
+          <item name="def_fastboot_allowed" type="boolean">0</item>
+          <item name="def_htc_mobile_network_on" type="boolean">true</item>
+		  <item name="def_install_non_market_apps" type="boolean">true</item>
+		  <item name="def_agps_enabled" type="boolean">true</item>
         </set>
       </function>
     </module>
@@ -143,15 +144,22 @@
   <ShutdownConfiguration>
     <ShutdownAnimation image_png="/data/local/hTC_downanim.zip" image="" fps="20" />
   </ShutdownConfiguration>
-  <category name="Settings">
-    <module name="properties">
-      <function>
-        <set name="single">
-          <item name="market_name"> EVO</item>
+  <category name="Settings">  
+    <module name="res">
+      <function name="values">
+        <set name="single">          
+		  <item name="htc_recent_apps_button_values" type="string-array">1</item>    		  
         </set>
       </function>
     </module>
-    <module name="list">
+    <module name="properties">
+      <function>
+        <set name="single">
+          <item name="market_name"> EVO</item>		  
+        </set>
+      </function>
+    </module>
+	<module name="list">
       <function name="hide_application_list">
         <set name="single">
           <item name="0">com.htc.android.iqrd</item>
