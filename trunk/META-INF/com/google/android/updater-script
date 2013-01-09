@@ -11,7 +11,6 @@ ui_print(" ");
 ui_print(" ");
 ui_print(" ");
 ui_print("***********************************************************************");
-ui_print("                                                                       ");
 ui_print("     Welcome to                                                        ");
 ui_print("                                                                       ");
 ui_print("                                                                       ");
@@ -43,19 +42,18 @@ ui_print("                                                                      
 ui_print("                                                                       ");
 ui_print("                                                                       ");
 ui_print("                                                      by team d3rp     ");
-ui_print("                                                      MileStone one    ");
 ui_print("***********************************************************************");
 ui_print(" ");
 ui_print(" ");
 ui_print(" ");
 
-ui_print("Aligning partitions with ext4, this may take a while...");	   	   
-ui_print(" ");
-ui_print(" ");
-ui_print(" ");
-package_extract_dir("setup", "/tmp");
-run_program("/sbin/sleep", "6");
-set_perm_recursive(0, 0, 0755, 0755, "/tmp");
+#ui_print("Aligning partitions with ext4, this may take a while...");	   	   
+#ui_print(" ");
+#ui_print(" ");
+#ui_print(" ");
+#package_extract_dir("setup", "/tmp");
+#run_program("/sbin/sleep", "6");
+#set_perm_recursive(0, 0, 0755, 0755, "/tmp");
       
 	  #run_program("/tmp/fsck.ext4", "-fy", "/dev/block/mmcblk0p35");
 	  #run_program("/tmp/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "SYSTEM", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p35");
@@ -67,7 +65,7 @@ set_perm_recursive(0, 0, 0755, 0755, "/tmp");
       #run_program("/tmp/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p37");
 	  #run_program("/tmp/fsck.ext4", "-Dfy", "/dev/block/mmcblk0p37");
 
-ui_print("Extracting files...");	   	   
+ui_print("Preparing setup...");	   	   
 ui_print(" ");
 ui_print(" ");
 ui_print(" ");
@@ -126,6 +124,10 @@ mount("ext4", "EMMC", "/dev/block/mmcblk0p37", "/data");
 	delete_recursive("/data/data/com.htc.reportagent/shared_prefs");
 
 run_program("/sbin/sleep", "6");
+ui_print("Installing ROM files...");	   	   
+ui_print(" ");
+ui_print(" ");
+ui_print(" ");
 package_extract_dir("system", "/system");
 package_extract_dir("data", "/data");
 
