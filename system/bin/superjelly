@@ -1,0 +1,55 @@
+#!/system/bin/sh
+#hockeyfamily737 is a sex god
+#kanged by Duce
+echo "Thank you for choosing team d3rp!"
+echo "This will build you our ROM,"
+echo "From the latest commits to the trunk."
+echo "You need about 1.5gb free on sdcard2,"
+echo "Because this pulls the whole trunk,"
+echo "AND makes the ROM.zip, so it's big."
+echo "Oh, and it takes a while,"
+echo "Maybe an hour?"
+echo "Please use WiFi or LTE."
+echo "Here we gogogo!"
+echo "..."
+echo "You can stop this script at any time,"
+echo "by pressing volume - and c"
+echo "..."
+echo "Connecting to SVN source code..."
+echo "..."
+sleep 8
+rm -rf /sdcard2/.superjelly
+rm -f /sdcard2/SuperJELLY_SVN.zip
+mkdir /sdcard2/.superjelly
+cd /sdcard2/.superjelly
+clear
+sleep 1
+wget -m -np --cut-dirs=2 -R index.html http://super-jelly.googlecode.com/svn/trunk/
+clear
+echo "Download complete!"
+sleep 5
+echo "..."
+echo "Building rom zip"
+echo "..."
+sleep 5
+cd /sdcard2/.superjelly/super-jelly.googlecode.com
+sleep 1
+zip -9 -r /sdcard2/SuperJELLY_SVN.zip META-INF boot.img setup system data kernel
+sleep 1
+clear
+echo "Cleaning up"
+echo "..."
+cd /sdcard2
+rm -r /sdcard2/.superjelly
+echo "SuperJELLY_SVN.zip"
+echo "is on your sdcard2 root"
+echo "Happy flashing :D"
+echo "BOOM!"
+
+
+
+
+
+
+
+
