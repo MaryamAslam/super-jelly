@@ -137,6 +137,7 @@
           <item name="def_htc_mobile_network_on" type="boolean">true</item>
 		  <item name="def_install_non_market_apps" type="boolean">true</item>
 		  <item name="def_agps_enabled" type="boolean">true</item>
+		  <item name="def_recent_apps_button">1</item>
         </set>
       </function>
     </module>
@@ -144,14 +145,7 @@
   <ShutdownConfiguration>
     <ShutdownAnimation image_png="/data/local/hTC_downanim.zip" image="" fps="20" />
   </ShutdownConfiguration>
-  <category name="Settings">  
-    <module name="res">
-      <function name="values">
-        <set name="single">          
-		  <item name="htc_recent_apps_button_values" type="string-array">1</item>    		  
-        </set>
-      </function>
-    </module>
+  <category name="Settings">    
     <module name="properties">
       <function>
         <set name="single">
