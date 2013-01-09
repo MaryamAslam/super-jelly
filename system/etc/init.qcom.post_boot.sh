@@ -33,6 +33,8 @@ case "$target" in
      chown media.system /sys/power/pnpmgr/apps/media_mode
      chown system /sys/module/restart/parameters/notify_efs_sync
      echo "0,2,4,7,9,12" > /sys/module/lowmemorykiller/parameters/adj
+	 echo "0" > /sys/devices/system/cpu/cpufreq/ondemand/powersave_bias
+     chmod 444 /sys/devices/system/cpu/cpufreq/ondemand/powersave_bias
         ;;
 esac
 
