@@ -433,4 +433,5 @@ ro.modversion=SuperJelly
 
 #SuperJelly Mods
 superjelly.stock.recent=true
+superjelly.trans.curtain=true
 
