@@ -202,14 +202,7 @@ touch $ZIPALIGNDB
 echo "Automatic ZipAlign finished at $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $LOG_FILE
 
 #Fix Contacts
-CONTACT_DATA_DIR="/data/data/com.android.providers.contacts"
-CONTACT_PIC_DIR="$CONTACT_DATA_DIR/files"
-CONTACT_DB="$CONTACT_DATA_DIR/databases/contacts2.db"
-
-if $TEST -d $CONTACT_PIC_DIR ; then
-  $LOG -p i "Fixing contacts permissions"
-  $CHMOD 666 $CONTACT_PIC_DIR/*
-fi
+chmod 664 /data/data/com.android.providers.contacts/files/*
 
 if $TEST -f $SQLITE ; then
   RESTCONT=`$SQLITE $CONTACT_DB 'SELECT count(*) FROM raw_contacts WHERE is_restricted=1';`
@@ -221,7 +214,11 @@ fi
   if [ -e /data/data/com.android.providers.contacts/databases/contacts2.db ] ; then
    /system/xbin/sqlite3 /data/data/com.android.providers.contacts/databases/contacts2.db VACUUM
    /system/xbin/sqlite3 /data/data/com.android.providers.contacts/databases/contacts2.db REINDEX
-  fi 
+  fi
+if [ -e /data/user/0/com.android.providers.contacts/databases/contacts2.db ] ; then
+   /system/xbin/sqlite3 /data/user/0/com.android.providers.contacts/databases/contacts2.db VACUUM
+   /system/xbin/sqlite3 /data/user/0/com.android.providers.contacts/databases/contacts2.db REINDEX
+fi  
 
 # Optimized remounts
 mount -o remount,nodev,nodiratime,noatime,delalloc,noauto_da_alloc,barrier=1 /system /system
