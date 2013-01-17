@@ -202,7 +202,14 @@ touch $ZIPALIGNDB
 echo "Automatic ZipAlign finished at $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $LOG_FILE
 
 #Fix Contacts
-chmod 664 /data/data/com.android.providers.contacts/files/*
+CONTACT_DATA_DIR="/data/data/com.android.providers.contacts"
+CONTACT_PIC_DIR="$CONTACT_DATA_DIR/files"		
+CONTACT_DB="$CONTACT_DATA_DIR/databases/contacts2.db"		
+			
+if $TEST -d $CONTACT_PIC_DIR ; then		
+  $LOG -p i "Fixing contacts permissions"		
+  $CHMOD 666 $CONTACT_PIC_DIR/*		
+fi
 
 if $TEST -f $SQLITE ; then
   RESTCONT=`$SQLITE $CONTACT_DB 'SELECT count(*) FROM raw_contacts WHERE is_restricted=1';`
