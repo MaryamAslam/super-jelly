@@ -54,12 +54,7 @@ ui_print(" ");
 #package_extract_dir("setup", "/tmp");
 #run_program("/sbin/sleep", "6");
 #set_perm_recursive(0, 0, 0755, 0755, "/tmp");
-
-
-      #unmount("/system");
-	  #unmount("/data");
-      #format("ext4", "EMMC", "/dev/block/mmcblk0p35", "0", "/system");
-	  #format("ext4", "EMMC", "/dev/block/mmcblk0p37", "0", "/data");
+      
 	  #run_program("/tmp/fsck.ext4", "-fy", "/dev/block/mmcblk0p35");
 	  #run_program("/tmp/mkfs.ext4", "-O", "^ext_attr,^has_journal,^huge_file", "-L", "SYSTEM", "-b", "4096", "-m", "0", "-F", "/dev/block/mmcblk0p35");
       #run_program("/tmp/tune2fs.ext4", "-c", "1", "-m", "0", "-o", "journal_data_writeback", "/dev/block/mmcblk0p35");
@@ -207,25 +202,66 @@ ui_print(" ");
 run_program("/sbin/sleep", "6");
 set_perm_recursive(0, 0, 0755, 0644, "/system");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/bin");
+set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d");
+set_perm(0, 0, 0777, "/system/etc/init.d/00proxfix");
+set_perm(0, 0, 0777, "/system/etc/init.d/01sysctl");
+set_perm(0, 0, 0777, "/system/etc/init.d/02sdcard");
+set_perm(0, 0, 0777, "/system/etc/init.d/03musicbox");
+set_perm(0, 0, 0777, "/system/etc/init.d/04sqlite");
+set_perm(0, 0, 0777, "/system/etc/init.d/05permission");
+set_perm(0, 0, 0777, "/system/xbin/sysrw");
+set_perm(0, 0, 0777, "/system/xbin/sysro");
+set_perm(0, 0, 04755, "/system/xbin/zipalign");
+set_perm(0, 0, 04755, "/system/xbin/sqlite3");
+set_perm(0, 0, 04755, "/system/xbin/dexdump");
+set_perm(0, 0, 04755, "/system/xbin/busybox");
+set_perm(0, 0, 04755, "/system/xbin/bttest");
+set_perm(0, 0, 06755, "/system/bin/su");
 set_perm(0, 3003, 06755, "/system/bin/ip");
 set_perm(0, 3003, 02750, "/system/bin/netcfg");
 set_perm(0, 3004, 02755, "/system/bin/ping");
 set_perm(0, 2000, 06750, "/system/bin/run-as");
+set_perm(0, 0, 0777, "/system/app/SuperToggles.apk");
+set_perm(0, 0, 0777, "/system/app/HomePersonalize.apk");
 set_perm_recursive(1002, 1002, 0755, 0440, "/system/etc/bluetooth");
 set_perm(0, 0, 0755, "/system/etc/bluetooth");
 set_perm(1000, 1000, 0640, "/system/etc/bluetooth/auto_pairing.conf");
 set_perm(3002, 3002, 0444, "/system/etc/bluetooth/blacklist.conf");
 set_perm(1002, 1002, 0440, "/system/etc/dbus.conf");
 set_perm(1014, 2000, 0550, "/system/etc/dhcpcd/dhcpcd-run-hooks");
-set_perm(0, 2000, 0550, "/system/etc/init.goldfish.sh");
+set_perm(0, 2000, 0755, "/system/etc/init.post_boot.sh","/system/etc/init.goldfish.sh",
+   "/system/etc/init.qcom.bt.sh","/system/etc/init.qcom.coex.sh",
+   "/system/etc/init.qcom.dsps_links.sh","/system/etc/init.qcom.fm.sh",
+   "/system/etc/init.qcom.q6_links.sh","/system/etc/init.qcom.radio_links.sh",
+   "/system/etc/init.qcom.wcnss_links.sh","/system/etc/init.qcom.wifi.sh",
+   "/system/etc/image_beatbox_bt.bin","/system/etc/image_beats_wireless_bt.bin",
+   "/system/etc/image_gec.bin","/system/etc/image_gec_2vol.bin",
+   "/system/etc/image_gec_bt.bin","/system/etc/image_htc_earbud.bin",
+   "/system/etc/image_htc_earbud_2vol.bin","/system/etc/image_htc_midtier.bin",
+   "/system/etc/image_htc_midtier_2vol.bin","/system/etc/image_ibeats.bin",
+   "/system/etc/image_ibeats_2vol.bin","/system/etc/image_ibeats_solo.bin",
+   "/system/etc/image_ibeats_solo_2vol.bin","/system/etc/image_ibeats_solo_v2.bin",
+   "/system/etc/image_ibeats_solo_v2_2vol.bin","/system/etc/image_ibeats_v2.bin",
+   "/system/etc/AIC3008_REG_DualMic.csv","/system/etc/AIC3008_REG_DualMic_XC.csv",
+   "/system/etc/asound.conf","/system/etc/audio_effects.conf",
+   "/system/etc/audio_policy.conf","/system/etc/AudioBTID.csv",
+   "/system/etc/media_profiles","/system/etc/media_codecs",
+   "/system/etc/sound_mfg_DMIC","/system/etc/sound_mfg");
 set_perm_recursive(0, 0, 0755, 0555, "/system/etc/ppp");
 set_perm_recursive(0, 2000, 0755, 0644, "/system/vendor");
+set_perm_recursive(0, 2000, 0755, 0644, "/system/vendor/etc");
 set_perm_recursive(0, 0, 0755, 0644, "/system/vendor/firmware");
 set_perm(0, 2000, 0755, "/system/vendor/firmware");
 set_perm(0, 2000, 0755, "/system/vendor/lib");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
 set_perm(0, 0, 06755, "/system/xbin/su");
-symlink("/system/xbin/su", "/system/bin/su");
+set_perm(0, 0, 0644, "/system/app/Superuser.apk");
+set_perm(2000, 2000, 0771, "/data/local");
+set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
+set_perm(0, 0, 0777, "/system/bin/.ext");
+set_perm(0, 0, 06755, "/system/bin/.ext/su");
+set_perm(0, 0, 0777, "/system/bin/superjelly");
+set_perm(0, 0, 0777, "/system/bin/zip");
 
 #root links/perms
 run_program("/sbin/sleep", "6");
