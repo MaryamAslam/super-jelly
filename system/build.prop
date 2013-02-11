@@ -295,6 +295,17 @@ media.stagefright.enable-http=true
 media.stagefright.enable-meta=true 
 media.stagefright.enable-scan=true
 
+#tethering anf throttling
+
+ro.tether.denied=false
+ro.wifi.hotspotUI=true
+ro.wifi.hotspotUI.SPCS_001=true
+ro.bt.tetheringUI=true
+ro.bt.tetheringUI.SPCS_001=true
+ro.usb.tetheringUI=true
+ro.usb.tetheringUI.SPCS_001=true
+ro.ril.multirab.throttling=false
+
 #add ons
 ro.media.enc.jpeg.quality=100 
 ro.media.enc.hprof.vid.fps=65
