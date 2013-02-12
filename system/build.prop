@@ -79,7 +79,7 @@ ro.build.changelist=147243
 ro.build.fingerprint=htc/jewel/jewel:4.1.1/JRO03C/147243.3:user/release-keys
 ro.build.characteristics=default
 ro.build.project=JEWEL_CL_JB_45_S:305013
-ro.product.version=SuperJELLY_SVN
+ro.product.version=SuperJELLY_Milestone_2
 ro.build.languageremove=0
 ro.build.sense.version=4.5
 # Do not try to parse ro.build.description or .fingerprint
