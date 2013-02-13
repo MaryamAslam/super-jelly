@@ -233,7 +233,7 @@ mount -o remount,nodev,nodiratime,noatime,delalloc,noauto_da_alloc,barrier=0 /ca
 mount -o remount,nodev,nodiratime,noatime,delalloc,noauto_da_alloc,barrier=0 /data /data  
 
 # mount system rw
-mount -o remount,rw /dev/block/mmcblk0p35 /system
+/system/bin/sysrw
 
 # Deep sleep volume wake
 echo 1 > /sys/keyboard/vol_wakeup
