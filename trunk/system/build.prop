@@ -137,8 +137,8 @@ ro.product.hwreset.timer1=8
 ro.product.hwreset.timer2=11
 
 # - system global -
-dalvik.vm.heapsize=128m
-dalvik.vm.heapgrowthlimit=64m
+dalvik.vm.heapsize=256m
+dalvik.vm.heapgrowthlimit=128m
 
 # System props for audio
 # System props for soundhound
